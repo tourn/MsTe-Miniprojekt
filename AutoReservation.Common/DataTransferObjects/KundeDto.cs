@@ -1,11 +1,72 @@
 ﻿using AutoReservation.Common.Extensions;
 using AutoReservation.Common.DataTransferObjects.Core;
 using System.Text;
+using System;
 
 namespace AutoReservation.Common.DataTransferObjects
 {
     public class KundeDto : DtoBase<KundeDto>
     {
+
+        private int id;
+        public int Id
+        {
+            get { return id; }
+            set
+            {
+                if (id == value)
+                {
+                    return;
+                }
+                id = value;
+                this.OnPropertyChanged(p => p.Id);
+            }
+        }
+
+        private string nachname;
+        public string Nachname
+        {
+            get { return nachname; }
+            set
+            {
+                if(nachname == value)
+                {
+                    return;
+                }
+                nachname = value;
+                this.OnPropertyChanged(p => p.Nachname);
+            }
+        }
+
+        private string vorname;
+        public string Vorname
+        {
+            get { return vorname; }
+            set
+            {
+                if (vorname == value)
+                {
+                    return;
+                }
+                vorname = value;
+                this.OnPropertyChanged(p => p.Vorname);
+            }
+        }
+
+        private DateTime geburtsdatum;
+        public DateTime Geburtsdatum
+        {
+            get { return geburtsdatum; }
+            set
+            {
+                if (geburtsdatum == value)
+                {
+                    return;
+                }
+                geburtsdatum = value;
+                this.OnPropertyChanged(p => p.Geburtsdatum);
+            }
+        }
 
         public override string Validate()
         {
