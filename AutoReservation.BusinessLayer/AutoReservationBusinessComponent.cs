@@ -96,7 +96,7 @@ namespace AutoReservation.BusinessLayer
             }
         }
 
-        public void deleteKunde(Kunde kunde)
+        public void DeleteKunde(Kunde kunde)
         {
             using (var context = new AutoReservationEntities())
             {

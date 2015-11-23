@@ -2,12 +2,15 @@
 using AutoReservation.Common.DataTransferObjects.Core;
 using System.Text;
 using System;
+using System.Runtime.Serialization;
 
 namespace AutoReservation.Common.DataTransferObjects
 {
+    [DataContract]
     public class ReservationDto : DtoBase<ReservationDto>
     {
         private DateTime von;
+        [DataMember]
         public DateTime Von {
             get { return von; }
             set
@@ -19,6 +22,7 @@ namespace AutoReservation.Common.DataTransferObjects
         }
 
         private DateTime bis;
+        [DataMember]
         public DateTime Bis {
             get { return bis; }
             set
@@ -30,6 +34,7 @@ namespace AutoReservation.Common.DataTransferObjects
         }
 
         private AutoDto auto;
+        [DataMember]
         public AutoDto Auto {
             get { return auto; }
             set
@@ -41,6 +46,7 @@ namespace AutoReservation.Common.DataTransferObjects
         }
 
         private KundeDto kunde;
+        [DataMember]
         public KundeDto Kunde {
             get { return kunde; }
             set
@@ -52,6 +58,7 @@ namespace AutoReservation.Common.DataTransferObjects
         }
 
         private int reservationNr;
+        [DataMember]
         public int ReservationNr {
             get { return reservationNr; }
             set
