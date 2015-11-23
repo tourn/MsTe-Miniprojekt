@@ -10,40 +10,40 @@ namespace AutoReservation.Common.DataTransferObjects
         private DateTime von;
         public DateTime Von {
             get { return von; }
-            private set
+            set
             {
                 if(von == value) { return; }
                 von = value;
-                this.OnPropertyChanged(p => p.von);
+                this.OnPropertyChanged(p => p.Von);
             }
         }
 
         private DateTime bis;
         public DateTime Bis {
             get { return bis; }
-            private set
+            set
             {
                 if(bis == value) { return; }
                 bis = value;
-                this.OnPropertyChanged(p => p.bis);
+                this.OnPropertyChanged(p => p.Bis);
             }
         }
 
         private AutoDto auto;
         public AutoDto Auto {
             get { return auto; }
-            private set
+            set
             {
                 if(auto == value) { return; }
                 auto = value;
-                this.OnPropertyChanged(p => p.auto);
+                this.OnPropertyChanged(p => p.Auto);
             }
         }
 
         private KundeDto kunde;
         public KundeDto Kunde {
             get { return kunde; }
-            private set
+            set
             {
                 if(kunde == value) { return; }
                 kunde = value;
@@ -51,14 +51,14 @@ namespace AutoReservation.Common.DataTransferObjects
             }
         }
 
-        private int reseravtionNr;
+        private int reservationNr;
         public int ReservationNr {
-            get { return reseravtionNr; }
-            private set
+            get { return reservationNr; }
+            set
             {
-                if(reseravtionNr == value) { return; }
-                reseravtionNr = value;
-                this.OnPropertyChanged(p => p.reseravtionNr);
+                if(reservationNr == value) { return; }
+                reservationNr = value;
+                this.OnPropertyChanged(p => p.ReservationNr);
             }
         }
 

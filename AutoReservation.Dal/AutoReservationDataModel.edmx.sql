@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/16/2015 15:47:12
+-- Date Created: 11/23/2015 11:12:11
 -- Generated from EDMX file: C:\Users\Frank\Documents\Vorlesungen HS15\MsTe\02_Uebungen\99_Miniprojekt\Vorgabe\AutoReservation.Dal\AutoReservationDataModel.edmx
 -- --------------------------------------------------
 
@@ -18,24 +18,42 @@ GO
 -- --------------------------------------------------
 
 IF OBJECT_ID(N'[dbo].[FK_Reservation_Auto]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Reservation] DROP CONSTRAINT [FK_Reservation_Auto];
+    ALTER TABLE [dbo].[Reservationen] DROP CONSTRAINT [FK_Reservation_Auto];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Reservation_Kunde]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Reservation] DROP CONSTRAINT [FK_Reservation_Kunde];
+    ALTER TABLE [dbo].[Reservationen] DROP CONSTRAINT [FK_Reservation_Kunde];
+GO
+IF OBJECT_ID(N'[dbo].[FK_LuxusklasseAuto_inherits_Auto]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Autos_LuxusklasseAuto] DROP CONSTRAINT [FK_LuxusklasseAuto_inherits_Auto];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MittelklasseAuto_inherits_Auto]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Autos_MittelklasseAuto] DROP CONSTRAINT [FK_MittelklasseAuto_inherits_Auto];
+GO
+IF OBJECT_ID(N'[dbo].[FK_StandardAuto_inherits_Auto]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Autos_StandardAuto] DROP CONSTRAINT [FK_StandardAuto_inherits_Auto];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Auto]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Auto];
+IF OBJECT_ID(N'[dbo].[Autos]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Autos];
 GO
-IF OBJECT_ID(N'[dbo].[Kunde]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Kunde];
+IF OBJECT_ID(N'[dbo].[Kunden]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Kunden];
 GO
-IF OBJECT_ID(N'[dbo].[Reservation]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Reservation];
+IF OBJECT_ID(N'[dbo].[Reservationen]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Reservationen];
+GO
+IF OBJECT_ID(N'[dbo].[Autos_LuxusklasseAuto]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Autos_LuxusklasseAuto];
+GO
+IF OBJECT_ID(N'[dbo].[Autos_MittelklasseAuto]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Autos_MittelklasseAuto];
+GO
+IF OBJECT_ID(N'[dbo].[Autos_StandardAuto]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Autos_StandardAuto];
 GO
 
 -- --------------------------------------------------
@@ -71,7 +89,7 @@ GO
 
 -- Creating table 'Autos_LuxusklasseAuto'
 CREATE TABLE [dbo].[Autos_LuxusklasseAuto] (
-    [Basistarif] nvarchar(max)  NOT NULL,
+    [Basistarif] int  NOT NULL,
     [Id] int  NOT NULL
 );
 GO

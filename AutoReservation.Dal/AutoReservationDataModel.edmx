@@ -64,7 +64,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Basistarif" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Basistarif" Type="int" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Autos_MittelklasseAuto">
@@ -226,7 +226,7 @@
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="LuxusklasseAuto" BaseType="AutoReservationModel.Auto" >
-          <Property Name="Basistarif" Type="String" Nullable="false" />
+          <Property Name="Basistarif" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="MittelklasseAuto" BaseType="AutoReservationModel.Auto" />
         <EntityType Name="StandardAuto" BaseType="AutoReservationModel.Auto" />
