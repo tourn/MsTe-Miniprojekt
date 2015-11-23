@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/23/2015 11:12:11
+-- Date Created: 11/23/2015 13:01:32
 -- Generated from EDMX file: C:\Users\Frank\Documents\Vorlesungen HS15\MsTe\02_Uebungen\99_Miniprojekt\Vorgabe\AutoReservation.Dal\AutoReservationDataModel.edmx
 -- --------------------------------------------------
 

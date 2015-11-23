@@ -117,11 +117,11 @@
     <None Include="..\MsTeMiniproject.snk">
       <Link>MsTeMiniproject.snk</Link>
     </None>
+    <None Include="App.Config" />
     <EntityDeploy Include="AutoReservationDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>AutoReservationDataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="App.Config" />
     <None Include="AutoReservationDataModel.edmx.diagram">
       <DependentUpon>AutoReservationDataModel.edmx</DependentUpon>
     </None>
