@@ -1,4 +1,5 @@
-﻿using AutoReservation.TestEnvironment;
+﻿using AutoReservation.Dal;
+using AutoReservation.TestEnvironment;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AutoReservation.BusinessLayer.Testing
@@ -27,9 +28,40 @@ namespace AutoReservation.BusinessLayer.Testing
         }
         
         [TestMethod]
+        public void Test_GetAuto()
+        {
+            var auto = Target.GetAuto(1);
+            Assert.AreEqual("Fiat Punto", auto.Marke);
+        }
+
+        [TestMethod]
         public void Test_UpdateAuto()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var orig = Target.GetAuto(1);
+            var mod = Target.GetAuto(1);
+            mod.Marke = "Duck Car";
+            target.UpdateAuto(mod, orig);
+
+            mod = target.GetAuto(1);
+            Assert.AreEqual("Duck Car", mod.Marke);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(LocalOptimisticConcurrencyException<Auto>))]
+        public void Test_UpdateAutoModifiedElsewhere()
+        {
+            var target1 = new AutoReservationBusinessComponent();
+            var target2 = new AutoReservationBusinessComponent();
+            var orig1 = target1.GetAuto(1);
+            var orig2 = target2.GetAuto(1);
+            var mod1 = target1.GetAuto(1);
+            var mod2 = target2.GetAuto(1);
+
+            mod1.Marke = "Duck Car";
+            target1.UpdateAuto(mod1, orig1);
+
+            mod2.Marke = "Cat Car";
+            target2.UpdateAuto(mod2, orig2);
         }
 
         [TestMethod]
