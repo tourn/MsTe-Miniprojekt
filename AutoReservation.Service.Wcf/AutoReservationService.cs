@@ -16,7 +16,7 @@ namespace AutoReservation.Service.Wcf
             Console.WriteLine("Calling: " + new StackTrace().GetFrame(1).GetMethod().Name);
         }
 
-        public IList<AutoDto> Autos()
+        public IList<AutoDto> GetAutos()
         {
             WriteActualMethod();
             return businessComponent.GetAutos().ConvertToDtos();
@@ -77,13 +77,13 @@ namespace AutoReservation.Service.Wcf
             businessComponent.AddReservation(reservation.ConvertToEntity());
         }
 
-        public IList<KundeDto> Kunden()
+        public IList<KundeDto> GetKunden()
         {
             WriteActualMethod();
             return businessComponent.GetKunden().ConvertToDtos();
         }
 
-        public IList<ReservationDto> Reservationen()
+        public IList<ReservationDto> AddReservationen()
         {
             WriteActualMethod();
             return businessComponent.GetReservationen().ConvertToDtos();
