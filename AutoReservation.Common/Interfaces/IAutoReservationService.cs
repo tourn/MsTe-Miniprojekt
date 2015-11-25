@@ -51,7 +51,7 @@ namespace AutoReservation.Common.Interfaces
         */
 
         [OperationContract]
-        IList<ReservationDto> AddReservationen();
+        IList<ReservationDto> GetReservationen();
 
         [OperationContract]
         ReservationDto GetReservation(int id);

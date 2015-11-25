@@ -154,7 +154,8 @@ namespace AutoReservation.BusinessLayer
         {
             using (var context = new AutoReservationEntities())
             {
-                return context.Reservationen.AsNoTracking().ToList();
+                //return context.Reservationen.AsNoTracking().ToList();
+                return context.Reservationen.Include(r => r.Kunde).Include(r => r.Auto).ToList();
             }
         }
 
