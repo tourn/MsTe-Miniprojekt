@@ -86,6 +86,7 @@ namespace AutoReservation.Service.Wcf.Testing
             var kunde = new KundeDto();
             kunde.Vorname = "Hans";
             kunde.Nachname = "Duck";
+            kunde.Geburtsdatum = new DateTime(1999, 12, 12);
             Target.AddKunde(kunde);
             Assert.AreEqual(count+1, Target.GetKunden().Count);
         }
@@ -97,6 +98,8 @@ namespace AutoReservation.Service.Wcf.Testing
             var res = new ReservationDto();
             res.Kunde = Target.GetKunde(1);
             res.Auto = Target.GetAuto(1);
+            res.Von = new DateTime(2015, 12, 1);
+            res.Bis = new DateTime(2015, 12, 12);
             Target.AddReservation(res);
             Assert.AreEqual(count+1, Target.GetReservationen().Count);
         }

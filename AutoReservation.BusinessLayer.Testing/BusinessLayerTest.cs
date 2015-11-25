@@ -86,7 +86,7 @@ namespace AutoReservation.BusinessLayer.Testing
             target.UpdateReservation(mod, orig);
 
             var updated = Target.GetReservation(1);
-            Assert.AreEqual(auto, updated.Auto);
+            Assert.AreEqual(auto.Id, updated.Auto.Id);
         }
     }
 }

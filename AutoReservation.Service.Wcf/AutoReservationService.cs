@@ -38,7 +38,6 @@ namespace AutoReservation.Service.Wcf
         {
             WriteActualMethod();
             businessComponent.DeleteReservation(reservation.ConvertToEntity());
-            throw new NotImplementedException();
         }
 
         public AutoDto GetAuto(int id)
