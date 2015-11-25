@@ -43,7 +43,7 @@ namespace AutoReservation.Service.Wcf.Testing
             var auto = Target.GetAuto(1);
             Assert.AreEqual(1, auto.Id);
             Assert.AreEqual("Fiat Punto", auto.Marke);
-            Assert.AreEqual(2, auto.AutoKlasse);
+            Assert.AreEqual(AutoKlasse.Standard, auto.AutoKlasse);
         }
 
         [TestMethod]
@@ -56,88 +56,164 @@ namespace AutoReservation.Service.Wcf.Testing
         [TestMethod]
         public void Test_GetReservationByNr()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var res1 = Target.GetReservation(1);
+            Assert.AreEqual(1, res1.Auto.Id);
         }
 
         [TestMethod]
         public void Test_GetReservationByIllegalNr()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var res = Target.GetReservation(-1);
+            Assert.IsNull(res);
         }
 
         [TestMethod]
         public void Test_InsertAuto()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var count = Target.GetAutos().Count;
+            var auto = new AutoDto();
+            auto.AutoKlasse = AutoKlasse.Luxusklasse;
+            auto.Marke = "Duck Car";
+            auto.Basistarif = 1337;
+            Target.AddAuto(auto);
+            Assert.AreEqual(count + 1, Target.GetAutos().Count);
         }
 
         [TestMethod]
         public void Test_InsertKunde()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var count = Target.GetKunden().Count;
+            var kunde = new KundeDto();
+            kunde.Vorname = "Hans";
+            kunde.Nachname = "Duck";
+            Target.AddKunde(kunde);
+            Assert.AreEqual(count+1, Target.GetKunden().Count);
         }
 
         [TestMethod]
         public void Test_InsertReservation()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var count = Target.GetReservationen().Count;
+            var res = new ReservationDto();
+            res.Kunde = Target.GetKunde(1);
+            res.Auto = Target.GetAuto(1);
+            Target.AddReservation(res);
+            Assert.AreEqual(count+1, Target.GetReservationen().Count);
         }
 
         [TestMethod]
         public void Test_UpdateAuto()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var orig = Target.GetAuto(1);
+            var mod = orig.Clone();
+            mod.Marke = "DuckCar";
+            Target.UpdateAuto(mod, orig);
+
+            var updated = Target.GetAuto(1);
+            Assert.AreEqual("DuckCar", updated.Marke);
         }
 
         [TestMethod]
         public void Test_UpdateKunde()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var orig = Target.GetKunde(1);
+            var mod = orig.Clone();
+            mod.Nachname = "Duck";
+            Target.UpdateKunde(mod, orig);
+
+            var updated = Target.GetKunde(1);
+            Assert.AreEqual("Duck", updated.Nachname);
         }
 
         [TestMethod]
         public void Test_UpdateReservation()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var orig = Target.GetReservation(1);
+            var mod = orig.Clone();
+            var kunde = Target.GetKunde(2);
+            mod.Kunde = kunde;
+
+            Target.UpdateReservation(mod, orig);
+
+            var updated = Target.GetReservation(1);
+            Assert.AreEqual(2, updated.Kunde.Id);
         }
 
         [TestMethod]
         [ExpectedException(typeof(FaultException<AutoDto>))]
         public void Test_UpdateAutoWithOptimisticConcurrency()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var orig = Target.GetAuto(1);
+            var mod1 = orig.Clone();
+            var mod2 = orig.Clone();
+
+            mod1.Marke = "DuckCar";
+            Target.UpdateAuto(mod1, orig);
+
+            mod2.Marke = "BunnyCar";
+            Target.UpdateAuto(mod2, orig);
         }
 
         [TestMethod]
         [ExpectedException(typeof(FaultException<KundeDto>))]
         public void Test_UpdateKundeWithOptimisticConcurrency()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var orig = Target.GetKunde(1);
+            var mod1 = orig.Clone();
+            var mod2 = orig.Clone();
+
+            mod1.Nachname = "Duck";
+            Target.UpdateKunde(mod1, orig);
+
+            mod2.Nachname = "Bunny";
+            Target.UpdateKunde(mod2, orig);
         }
 
         [TestMethod]
         [ExpectedException(typeof(FaultException<ReservationDto>))]
         public void Test_UpdateReservationWithOptimisticConcurrency()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var orig = Target.GetReservation(1);
+            var mod1 = orig.Clone();
+            var mod2 = orig.Clone();
+            var auto1 = Target.GetAuto(2);
+            var auto2 = Target.GetAuto(3);
+
+            mod1.Auto = auto1;
+            Target.UpdateReservation(mod1, orig);
+
+            mod2.Auto = auto2;
+            Target.UpdateReservation(mod2, orig);
         }
 
         [TestMethod]
         public void Test_DeleteKunde()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var count = Target.GetKunden().Count;
+            var kunde = Target.GetKunde(1);
+            Target.DeleteKunde(kunde);
+            Assert.AreEqual(count -1, Target.GetKunden().Count);
+            Assert.IsNull(Target.GetKunde(1));
         }
 
         [TestMethod]
         public void Test_DeleteAuto()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var count = Target.GetAutos().Count;
+            var auto = Target.GetAuto(1);
+            Target.DeleteAuto(auto);
+            Assert.AreEqual(count -1, Target.GetAutos().Count);
+            Assert.IsNull(Target.GetAuto(1));
         }
 
         [TestMethod]
         public void Test_DeleteReservation()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var count = Target.GetReservationen().Count;
+            var res = Target.GetReservation(1);
+            Target.DeleteReservation(res);
+            Assert.AreEqual(count -1, Target.GetReservationen().Count);
+            Assert.IsNull(Target.GetReservation(1));
         }
     }
 }

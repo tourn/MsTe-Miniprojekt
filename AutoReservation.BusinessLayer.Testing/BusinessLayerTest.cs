@@ -67,13 +67,26 @@ namespace AutoReservation.BusinessLayer.Testing
         [TestMethod]
         public void Test_UpdateKunde()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var orig = Target.GetKunde(1);
+            var mod = Target.GetKunde(1);
+            mod.Nachname = "Duck";
+            target.UpdateKunde(mod, orig);
+
+            var updated = Target.GetKunde(1);
+            Assert.AreEqual("Duck", mod.Nachname);
         }
 
         [TestMethod]
         public void Test_UpdateReservation()
         {
-            Assert.Inconclusive("Test not implemented.");
+            var orig = Target.GetReservation(1);
+            var mod = Target.GetReservation(1);
+            var auto = Target.GetAuto(2);
+            mod.Auto = auto;
+            target.UpdateReservation(mod, orig);
+
+            var updated = Target.GetReservation(1);
+            Assert.AreEqual(auto, updated.Auto);
         }
     }
 }
