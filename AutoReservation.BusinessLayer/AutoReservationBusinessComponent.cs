@@ -163,7 +163,8 @@ namespace AutoReservation.BusinessLayer
         {
             using (var context = new AutoReservationEntities())
             {
-                return context.Reservationen.AsNoTracking().SingleOrDefault(r => r.ReservationNr == reservationNr);
+                //return context.Reservationen.AsNoTracking().SingleOrDefault(r => r.ReservationNr == reservationNr);
+                return context.Reservationen.Include(r => r.Kunde).Include(r => r.Auto).FirstOrDefault(r => r.ReservationNr == reservationNr);
             }
         }
 

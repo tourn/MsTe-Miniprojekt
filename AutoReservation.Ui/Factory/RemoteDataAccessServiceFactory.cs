@@ -12,7 +12,7 @@ namespace AutoReservation.Ui.Factory
     {
         public IAutoReservationService GetService()
         {
-            //return new Mock<IAutoReservationService>().Object;
+            throw new NotImplementedException();
         }
     }
 }
