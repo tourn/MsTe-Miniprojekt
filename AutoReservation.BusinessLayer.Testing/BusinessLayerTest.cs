@@ -83,6 +83,7 @@ namespace AutoReservation.BusinessLayer.Testing
             var mod = Target.GetReservation(1);
             var auto = Target.GetAuto(2);
             mod.Auto = auto;
+            mod.AutoId = auto.Id;
             target.UpdateReservation(mod, orig);
 
             var updated = Target.GetReservation(1);
